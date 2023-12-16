@@ -1,24 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+import { HashRouter as Router, Link, Route, Routes } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
+
+import Home from './views/home';
+import Login from './views/login';
+import AddUser from './views/adduser';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+
+      <Container className='navBar'>
+
+        <Nav className='navLinks'>
+
+          <Nav.Item>
+            <Nav.Link href='/'>
+              <Link className='homeLink' to="/">Home</Link>
+            </Nav.Link>
+          </Nav.Item>
+
+          <Nav.Item>
+            <Nav.Link href='/'>
+              <Link className='Login' to="/login">Login</Link>
+            </Nav.Link>
+          </Nav.Item>
+
+          <Nav.Item>
+            <Nav.Link href='/'>
+              <Link className='Add User' to="/addUser">Add User</Link>
+            </Nav.Link>
+          </Nav.Item>
+
+        </Nav>
+
+      </Container>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/adduser" element={<AddUser />} />
+      </Routes>
+
+    </Router>
   );
 }
 
