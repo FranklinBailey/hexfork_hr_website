@@ -1,12 +1,18 @@
 import Container from "react-bootstrap/esm/Container";
+import { useState } from "react";
+import axios from "axios";
+
 // import Card from "react-bootstrap/Card";
 // import { Button, Nav } from "react-bootstrap";
 
-export default function AddUser() {
+export default function CreateAccount() {
+
+
     return (
         <Container>
-            <h1>Is this working?</h1>
-            <h2>From the 'adduser' page.</h2>
+            <form>
+                
+            </form>
         </Container>
     )
 }

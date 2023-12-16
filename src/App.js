@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 
 import Home from './views/home';
 import Login from './views/login';
-import AddUser from './views/adduser';
+import CreateAccount from './views/createAccount';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
 
           <Nav.Item>
             <Nav.Link href='/'>
-              <Link className='homeLink' to="/">Home</Link>
+              <Link className='homeLink' to="/" />
             </Nav.Link>
           </Nav.Item>
 
@@ -29,7 +29,7 @@ function App() {
 
           <Nav.Item>
             <Nav.Link href='/'>
-              <Link className='Add User' to="/addUser">Add User</Link>
+              <Link className='Create Account' to="/createAccount">Create Account</Link>
             </Nav.Link>
           </Nav.Item>
 
@@ -40,7 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/adduser" element={<AddUser />} />
+        <Route path="/createAccount" element={<CreateAccount />} />
       </Routes>
 
     </Router>
