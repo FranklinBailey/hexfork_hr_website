@@ -3,11 +3,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
 const port = 5000;
 
 // Middleware
+app.use(cors())
 app.use(bodyParser.json());
 
 // Connect to MongoDB
@@ -17,7 +19,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/HumanResourceDatabase", {
 });
 
 // Create a Mongoose schema for EmployeeCredentials
-const employeecredentialsSchema = new mongoose.Schema({
+const EmployeeCredentialsSchema = new mongoose.Schema({
   email: String,
   password: String,
 });
@@ -25,14 +27,18 @@ const employeecredentialsSchema = new mongoose.Schema({
 // Create a Mongoose model
 const EmployeeCredentials = mongoose.model(
     "EmployeeCredentials",
-    employeecredentialsSchema,
-    "employeecredentials" // Specify the collection name
+    EmployeeCredentialsSchema,
+    "EmployeeCredentials" // Specify the collection name
   );
 
 // API endpoint to handle form submissions
 app.post("/api/createAccount", async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    // Log the calues to check if thery are being captured correctly
+    console.log("Email: ", email);
+    console.log("Password: ", password);
 
     // Create a new document in the EmployeeCredentials collection
     const newEmployee = new EmployeeCredentials({ email, password });
@@ -51,9 +57,10 @@ app.use(express.static("build"));
 
 // Define a catch-all route for React app (if applicable)
 // This should come after all other routes
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../build", "index.html"));
-});
+// This is to serve the Frontend to the Backend
+// app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "../build", "index.html"));
+// });
 
 // Start the server
 app.listen(port, () => {
